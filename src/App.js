@@ -1,5 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import ChangePassword from "./pages/ChangePassword";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
@@ -12,6 +13,7 @@ function App() {
         <Route exact path ='/profile' component={ Profile } />
         <Route exact path ='/changePassword' component={ ChangePassword } />
         <Route exact path ='/register' component={ Register } />
+        <Route exact path ='/home' component={ Home } />
       </Switch>
     </div>
   );
