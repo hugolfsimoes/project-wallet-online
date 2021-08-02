@@ -1,8 +1,8 @@
 import React from 'react'
-import { AuthContext } from '../providers/auth'
+import MyContext from '../providers/MyContext';
 
 export default function Profile() {
-  const {user: {email}} = React.useContext(AuthContext)
+  const {user: {email}} = React.useContext(MyContext)
   console.log(email);
   return (
     <div>

@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
 import App from './App';
-import { AuthProvider } from './providers/auth';
+import DataProvider from './providers/DataProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
+    <DataProvider>
     <BrowserRouter >
     <App />
     </BrowserRouter>
-    </AuthProvider>
+    </DataProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

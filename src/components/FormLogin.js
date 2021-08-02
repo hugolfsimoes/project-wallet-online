@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link, useHistory } from "react-router-dom";
-import { AuthContext } from '../providers/auth';
+import MyContext from '../providers/MyContext';
 
 export default function FormLogin() {
   const history = useHistory();
-  const {user, setUser} = React.useContext(AuthContext)
+  const {user, setUser} = React.useContext(MyContext)
   console.log(user);
   return (
     <form>
