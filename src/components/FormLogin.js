@@ -12,8 +12,9 @@ export default function FormLogin() {
   const emailValidationRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
   const minimalPasswordLength = 6;
 
+  // Verificação de email adquirido através do site do Stackoverflow no link https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
   useEffect(() => {
-    // Verificação de email adquirido através do site do Stackoverflow no link https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
+    
     if (emailValidationRegex.test(inputEmail) && inputPassword.length >= minimalPasswordLength) {
       setIsDisabled(false)
     }else{

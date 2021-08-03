@@ -1,29 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import MyContext from '../providers/MyContext';
 
 export default function Profile() {
-  const {user, setUser} = React.useContext(MyContext);
+  const {setUser} = React.useContext(MyContext);
   const history = useHistory();
 
+  const [userStorage, setUserStorage] = useState(JSON.parse(localStorage.getItem('user')));
+
 useEffect(() => {
-  const userStorage = localStorage.getItem('user');
-  if(userStorage) {
-    setUser(JSON.parse(userStorage))
-  }else {
-    setUser('');
+  setUserStorage(JSON.parse(localStorage.getItem('user')))
   }
-}, [])
+, [userStorage])
 
   function handleClickLogOut() {
     localStorage.removeItem('user');
-    setUser('');
+    setUser({
+      email:'',
+      password:''}
+      );
     history.push('/');
   }
 
   return (
     <div>
-      <p>{user}</p>
+      <p>{userStorage}</p>
       <button type="button">Change Password</button>
       <button type="button" onClick={ handleClickLogOut }>Log out</button>
     </div>
