@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import CalculatorButtons from '../components/CalculatorButtons';
 import Header from '../components/Header'
+import  './style.css';
 
 export default function Calculator() {
-  return (
+  const [result, setResult] = useState(0);
+  const [acumulator, setAcumulatr] = useState(0);
+
+  function createScreen() {
+    return(
+      <div>
+        <span></span>
+        <span></span>
+      </div>
+    )
+  }
+
+  
+     return (
     <div>
-      <Header />
+      <Header pageName="Calculator" />
+      <section>{result}</section>
+      <CalculatorButtons />
     </div>
   )
 }

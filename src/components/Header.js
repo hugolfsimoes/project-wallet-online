@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function Header() {
+export default function Header({pageName}) {
   return (
     <header>
       <img src="" alt="" />
-      <p>Screen Name</p>
+      <p>{pageName}</p>
       <img src="" alt="" />
     </header>
   )
