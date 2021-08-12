@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
 export default function Footer() {
   return (
     <footer>
-      <img src="" alt="" />
-      <img src="" alt="" />
+      <img src="/images/mais.png" alt="" />
+      <img src="src/images/menos.png" alt="" />
     </footer>
-  )
+  );
 }
