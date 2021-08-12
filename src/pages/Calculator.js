@@ -18,7 +18,8 @@ export default function Calculator() {
       number !== "bs" &&
       number !== "%" &&
       number !== "=" &&
-      number !== "el"
+      number !== "el" &&
+      number !== "sqr"
     ) {
       setAcumulator(acumulator + "" + number);
     } else if (number === "=") {
@@ -43,6 +44,9 @@ export default function Calculator() {
     } else if (number === "%") {
       setResult(Number(acumulator) / 100);
       setAcumulator(Number(acumulator) / 100);
+    } else if (number === "sqr") {
+      setResult(Math.sqrt(Number(acumulator)));
+      setAcumulator(Math.sqrt(Number(acumulator)));
     } else {
       setAcumulator(acumulator + "  " + number + " ");
     }
