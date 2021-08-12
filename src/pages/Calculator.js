@@ -39,7 +39,7 @@ export default function Calculator() {
         );
       }
     } else if (number === "el") {
-      setResult(Math.pow(Number(acumulator), 2));
+      setResult(Math.pow(Number(acumulaNumber(acumulator) / 100tor), 2));
       setAcumulator(Math.pow(Number(acumulator), 2));
     } else if (number === "%") {
       setResult(Number(acumulator) / 100);
