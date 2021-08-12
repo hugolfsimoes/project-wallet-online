@@ -6,13 +6,51 @@ import "./style.css";
 
 export default function Calculator() {
   const [result, setResult] = useState(0);
-  const [acumulator, setAcumulatr] = useState(0);
+  const [acumulator, setAcumulator] = useState("");
+
+  function getNumberToOperation(number) {
+    if (
+      number !== "+" &&
+      number !== "-" &&
+      number !== "*" &&
+      number !== "/" &&
+      number !== "clear" &&
+      number !== "bs" &&
+      number !== "%" &&
+      number !== "=" &&
+      number !== "el"
+    ) {
+      setAcumulator(acumulator + "" + number);
+    } else if (number === "=") {
+      setResult(eval(acumulator));
+      setAcumulator("");
+    } else if (number === "clear") {
+      setAcumulator("");
+      setResult("");
+    } else if (number === "bs") {
+      if (acumulator[acumulator.length - 1] !== " ") {
+        setAcumulator(acumulator.substring(0, acumulator.length - 1));
+      } else {
+        setAcumulator(acumulator.substring(0, acumulator.length - 2));
+      }
+    } else if (number === "el") {
+      setResult(Math.pow(Number(acumulator), 2));
+      setAcumulator("");
+    } else if (number === "%") {
+      setResult(Number(acumulator) / 100);
+      setAcumulator("");
+    } else {
+      setAcumulator(acumulator + "  " + number + " ");
+    }
+
+    console.log(acumulator);
+  }
 
   function createScreen() {
     return (
       <div>
-        <span></span>
-        <span></span>
+        <div>{result}</div>
+        <div>{acumulator}</div>
       </div>
     );
   }
@@ -20,8 +58,8 @@ export default function Calculator() {
   return (
     <div>
       <Header pageName="Calculator" />
-      <section>{result}</section>
-      <CalculatorButtons />
+      <section>{createScreen()}</section>
+      <CalculatorButtons onClick={getNumberToOperation} />
       <Footer />
     </div>
   );
