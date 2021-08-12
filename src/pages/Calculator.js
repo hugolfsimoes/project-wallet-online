@@ -6,13 +6,59 @@ import "./style.css";
 
 export default function Calculator() {
   const [result, setResult] = useState(0);
-  const [acumulator, setAcumulatr] = useState(0);
+  const [acumulator, setAcumulator] = useState("");
+
+  function getNumberToOperation(number) {
+    if (
+      number !== "+" &&
+      number !== "-" &&
+      number !== "*" &&
+      number !== "/" &&
+      number !== "clear" &&
+      number !== "bs" &&
+      number !== "%" &&
+      number !== "=" &&
+      number !== "el" &&
+      number !== "sqr"
+    ) {
+      setAcumulator(acumulator + "" + number);
+    } else if (number === "=") {
+      setResult(eval(acumulator));
+      setAcumulator(eval(acumulator));
+    } else if (number === "clear") {
+      setAcumulator("");
+      setResult("");
+    } else if (number === "bs") {
+      if (acumulator.toString()[acumulator.toString().length - 1] !== " ") {
+        setAcumulator(
+          acumulator.toString().substring(0, acumulator.toString().length - 1)
+        );
+      } else {
+        setAcumulator(
+          acumulator.toString().substring(0, acumulator.toString().length - 2)
+        );
+      }
+    } else if (number === "el") {
+      setResult(Math.pow(Number(acumulaNumber(acumulator) / 100tor), 2));
+      setAcumulator(Math.pow(Number(acumulator), 2));
+    } else if (number === "%") {
+      setResult(Number(acumulator) / 100);
+      setAcumulator(Number(acumulator) / 100);
+    } else if (number === "sqr") {
+      setResult(Math.sqrt(Number(acumulator)));
+      setAcumulator(Math.sqrt(Number(acumulator)));
+    } else {
+      setAcumulator(acumulator + "  " + number + " ");
+    }
+
+    console.log(acumulator);
+  }
 
   function createScreen() {
     return (
       <div>
-        <span></span>
-        <span></span>
+        <div>{result}</div>
+        <div>{acumulator}</div>
       </div>
     );
   }
@@ -20,8 +66,8 @@ export default function Calculator() {
   return (
     <div>
       <Header pageName="Calculator" />
-      <section>{result}</section>
-      <CalculatorButtons />
+      <section>{createScreen()}</section>
+      <CalculatorButtons onClick={getNumberToOperation} />
       <Footer />
     </div>
   );
