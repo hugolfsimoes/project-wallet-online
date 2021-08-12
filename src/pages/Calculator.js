@@ -23,22 +23,26 @@ export default function Calculator() {
       setAcumulator(acumulator + "" + number);
     } else if (number === "=") {
       setResult(eval(acumulator));
-      setAcumulator("");
+      setAcumulator(eval(acumulator));
     } else if (number === "clear") {
       setAcumulator("");
       setResult("");
     } else if (number === "bs") {
-      if (acumulator[acumulator.length - 1] !== " ") {
-        setAcumulator(acumulator.substring(0, acumulator.length - 1));
+      if (acumulator.toString()[acumulator.toString().length - 1] !== " ") {
+        setAcumulator(
+          acumulator.toString().substring(0, acumulator.toString().length - 1)
+        );
       } else {
-        setAcumulator(acumulator.substring(0, acumulator.length - 2));
+        setAcumulator(
+          acumulator.toString().substring(0, acumulator.toString().length - 2)
+        );
       }
     } else if (number === "el") {
       setResult(Math.pow(Number(acumulator), 2));
-      setAcumulator("");
+      setAcumulator(Math.pow(Number(acumulator), 2));
     } else if (number === "%") {
       setResult(Number(acumulator) / 100);
-      setAcumulator("");
+      setAcumulator(Number(acumulator) / 100);
     } else {
       setAcumulator(acumulator + "  " + number + " ");
     }
