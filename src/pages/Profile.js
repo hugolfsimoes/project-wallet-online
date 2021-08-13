@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import MyContext from "../providers/MyContext";
@@ -6,8 +6,7 @@ import MyContext from "../providers/MyContext";
 export default function Profile() {
   const {
     user: { email },
-  } = React.useContext(MyContext);
-  console.log(email);
+  } = useContext(MyContext);
   return (
     <div>
       <Header pageName="Profile" />
