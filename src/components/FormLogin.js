@@ -23,7 +23,7 @@ export default function FormLogin() {
       <label htmlFor="password-input">
         Password <input id="password-input" type="text" />
       </label>
-      <button type="button" onClick={() => history.push("/profile")}>
+      <button type="button" onClick={() => history.push("/home")}>
         Login{" "}
       </button>{" "}
       <Link to="/aaa"> Or sign up </Link>{" "}
