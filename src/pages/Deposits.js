@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import MyContext from "../providers/MyContext";
+import Header from "../components/Header";
 
-export default function Deposits({ pageName }) {
+export default function Deposits() {
   let { deposit, setDeposit } = useContext(MyContext);
   const [arrDeposits, setArrDeposits] = useState([]);
   const [amount, setAmount] = useState(0);
@@ -29,6 +30,7 @@ export default function Deposits({ pageName }) {
   }
   return (
     <div>
+      <Header pageName="Deposit" />
       <form>
         <label htmlFor="quantia-input">
           Value:{" "}
