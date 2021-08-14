@@ -63,9 +63,9 @@ export default function Spendings() {
           </tr>
         </thead>
         <tbody>
-          {arrSpending.map((spen) => {
+          {arrSpending.map((spen, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <td>R$ {Number(spen.amount).toFixed(2)}</td>
                 <td>{spen.description}</td>
               </tr>
