@@ -28,6 +28,13 @@ export default function Spendings() {
       },
     ]);
   }
+
+  function deleteSpending(index) {
+    setDeposit(deposit - arrSpending[index].amount);
+    const auxArr = arrSpending;
+    auxArr.splice(index, 1);
+    setArrSpending(auxArr);
+  }
   return (
     <div>
       <Header pageName="Spending" />
@@ -68,6 +75,9 @@ export default function Spendings() {
               <tr key={index}>
                 <td>R$ {Number(spen.amount).toFixed(2)}</td>
                 <td>{spen.description}</td>
+                <button type="button" onClick={() => deleteSpending(index)}>
+                  X
+                </button>
               </tr>
             );
           })}
