@@ -4,24 +4,24 @@ import MyContext from "../providers/MyContext";
 
 export default function Spendings() {
   let { deposit, setDeposit } = useContext(MyContext);
-  const [arrDeposits, setArrDeposits] = useState([]);
+  const [arrSpending, setArrSpending] = useState([]);
   const [amount, setAmount] = useState(0);
-  const [description, setdescription] = useState("");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     setDeposit((deposit += Number(amount)));
-  }, [arrDeposits]);
+  }, [arrSpending]);
 
   function handleChange({ target }) {
     target.name === "amount"
       ? setAmount(Number(target.value))
-      : setdescription(target.value);
+      : setDescription(target.value);
   }
 
   function handleClick(event) {
     event.preventDefault();
-    setArrDeposits([
-      ...arrDeposits,
+    setArrSpending([
+      ...arrSpending,
       {
         amount: amount,
         description: description,
@@ -51,23 +51,23 @@ export default function Spendings() {
           />
         </label>
         <button type="submit" onClick={handleClick}>
-          Add Deposit
+          Add Spending
         </button>
       </form>
       return (
       <table>
         <thead>
           <tr>
-            <td>Deposit</td>
+            <td>Spending</td>
             <td>Description</td>
           </tr>
         </thead>
         <tbody>
-          {arrDeposits.map((dep) => {
+          {arrSpending.map((spen) => {
             return (
               <tr>
-                <td>R$ {Number(dep.amount).toFixed(2)}</td>
-                <td>{dep.description}</td>
+                <td>R$ {Number(spen.amount).toFixed(2)}</td>
+                <td>{spen.description}</td>
               </tr>
             );
           })}
