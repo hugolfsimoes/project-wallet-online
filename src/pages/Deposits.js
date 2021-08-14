@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import MyContext from "../providers/MyContext";
+import Header from "../components/Header";
 
-export default function Deposits({ pageName }) {
+export default function Deposits() {
   let { deposit, setDeposit } = useContext(MyContext);
   const [arrDeposits, setArrDeposits] = useState([]);
   const [amount, setAmount] = useState(0);
-  const [description, setdescription] = useState("");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     setDeposit((deposit += Number(amount)));
@@ -14,7 +15,7 @@ export default function Deposits({ pageName }) {
   function handleChange({ target }) {
     target.name === "amount"
       ? setAmount(Number(target.value))
-      : setdescription(target.value);
+      : setDescription(target.value);
   }
 
   function handleClick(event) {
@@ -27,8 +28,17 @@ export default function Deposits({ pageName }) {
       },
     ]);
   }
+
+  function deleteSpending(index) {
+    setDeposit(deposit - arrDeposits[index].amount);
+    const auxArr = arrDeposits;
+    auxArr.splice(index, 1);
+    setArrDeposits(auxArr);
+  }
+
   return (
     <div>
+      <Header pageName="Deposit" />
       <form>
         <label htmlFor="quantia-input">
           Value:{" "}
@@ -52,20 +62,24 @@ export default function Deposits({ pageName }) {
           Add Deposit
         </button>
       </form>
-      return (
       <table>
         <thead>
           <tr>
+            <td>Id</td>
             <td>Deposit</td>
             <td>Description</td>
           </tr>
         </thead>
         <tbody>
-          {arrDeposits.map((dep) => {
+          {arrDeposits.map((dep, index) => {
             return (
-              <tr>
+              <tr key={index}>
+                <td>{index + 1}</td>
                 <td>R$ {Number(dep.amount).toFixed(2)}</td>
                 <td>{dep.description}</td>
+                <button type="button" onClick={() => deleteSpending(index)}>
+                  X
+                </button>
               </tr>
             );
           })}
