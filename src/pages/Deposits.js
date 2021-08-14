@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import MyContext from "../providers/MyContext";
 import Header from "../components/Header";
 
@@ -7,6 +7,9 @@ export default function Deposits() {
   const [arrDeposits, setArrDeposits] = useState([]);
   const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
+
+  const inputAmout = useRef();
+  const inputDescription = useRef();
 
   useEffect(() => {
     setDeposit((deposit += Number(amount)));
@@ -27,6 +30,9 @@ export default function Deposits() {
         description: description,
       },
     ]);
+
+    inputAmout.current.value = "";
+    inputDescription.current.value = "";
   }
 
   function deleteSpending(index) {
@@ -47,6 +53,7 @@ export default function Deposits() {
             type="number"
             name="amount"
             onChange={handleChange}
+            ref={inputAmout}
           />
         </label>
         <label htmlFor="description-deposit-input">
@@ -56,6 +63,7 @@ export default function Deposits() {
             type="text"
             name="description"
             onChange={handleChange}
+            ref={inputDescription}
           />
         </label>
         <button type="submit" onClick={handleClick}>
@@ -77,9 +85,11 @@ export default function Deposits() {
                 <td>{index + 1}</td>
                 <td>R$ {Number(dep.amount).toFixed(2)}</td>
                 <td>{dep.description}</td>
-                <button type="button" onClick={() => deleteSpending(index)}>
-                  X
-                </button>
+                <td>
+                  <button type="button" onClick={() => deleteSpending(index)}>
+                    X
+                  </button>
+                </td>
               </tr>
             );
           })}
